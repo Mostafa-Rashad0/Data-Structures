@@ -115,20 +115,24 @@ int IsRightAssociative(char op)
 // Function to get weight of an operator. An operator with higher weight will have higher precedence. 
 int GetOperatorWeight(char op)
 {
-	int weight = -1;
-	switch (op)
-	{
-	case '+':
-	case '-':
-		weight = 1;
-	case '*':
-	case '/':
-		weight = 2;
-	case '$':
-		weight = 3;
-	}
-	return weight;
+    int weight = -1;
+    switch (op)
+    {
+        case '+':
+        case '-':
+            weight = 1;
+            break; // Fix: Added break to prevent fall-through
+        case '*':
+        case '/':
+            weight = 2;
+            break; // Fix: Added break to prevent incorrect precedence
+        case '$':
+            weight = 3;
+            break; // Fix: Ensuring correct return value
+    }
+    return weight;
 }
+
 
 // Function to perform an operation and return output. 
 int HasHigherPrecedence(char op1, char op2)
